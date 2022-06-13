@@ -5,6 +5,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 3. Мидл
  * 3.3. Hibernate
@@ -15,10 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @since 14.06.2022
  */
 @Controller
-@RequestMapping("/accident")
 public class IndexControl {
     @GetMapping("/")
     public String index(Model model) {
+        List<String> lists = Arrays.asList("First", "Second", "Third", "Fourth", "Fifth");
+        model.addAttribute("lists", lists);
         return "index";
     }
 }

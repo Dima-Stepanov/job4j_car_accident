@@ -16,6 +16,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CarAccidentApplication {
     public static void main(String[] args) {
         SpringApplication.run(CarAccidentApplication.class, args);
-        System.out.println("http://localhost:8080/accident/");
+        System.out.println("http://localhost:8080/");
     }
 }
