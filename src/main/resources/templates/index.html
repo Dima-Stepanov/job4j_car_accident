@@ -20,12 +20,16 @@ Hello : Accident
         <tr>
             <th style="width: 22%;">№</th>
             <th style="width: 22%;">Имя</th>
+            <th style="width: 22%;">Описание</th>
+            <th style="width: 22%;">Адрес</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="numb, state: ${lists}">
-            <td th:text="${state.count}"/>
-            <td th:text="${numb}"/>
+        <tr th:each="accident: ${accidents}">
+            <td th:text="${accident.id}"/>
+            <td th:text="${accident.name}"/>
+            <td th:text="${accident.text}"/>
+            <td th:text="${accident.address}"/>
         </tr>
         </tbody>
     </table>
