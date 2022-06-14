@@ -39,7 +39,7 @@
             <tbody>
             <tr th:each="accident: ${accidents}">
                 <th scope="row" class="text-center">
-                    <a th:href="@{/edit/{id}(id=${accident.id})}">
+                    <a th:href="@{/update?id={id}(id=${accident.id})}">
                         <i class="bi bi-pencil-square"></i>
                     </a>
                     <span th:text="${accident.id}"></span>

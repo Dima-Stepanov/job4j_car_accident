@@ -5,6 +5,7 @@ import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.IStore;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 3. Мидл
@@ -31,8 +32,8 @@ public class AccidentService {
         return accidents.edit(id, accident);
     }
 
-    public Accident findById(int id) {
-        return accidents.findById(id);
+    public Optional<Accident> findById(int id) {
+        return Optional.ofNullable(accidents.findById(id));
     }
 
     public List<Accident> findAll() {
