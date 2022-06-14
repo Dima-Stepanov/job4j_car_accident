@@ -2,13 +2,14 @@ package ru.job4j.accident.service;
 
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.repository.AccidentMem;
+import ru.job4j.accident.repository.IStore;
 
 import java.util.List;
 
 /**
  * 3. Мидл
  * 3.4. Spring
+ * 0. Spring MVC [#6877]
  * AccidentService слой бизнес логики.
  *
  * @author Dmitry Stepanov, user Dmitry
@@ -16,13 +17,27 @@ import java.util.List;
  */
 @Service
 public class AccidentService {
-    private final AccidentMem accidentMem;
+    private final IStore<Accident> accidents;
 
-    public AccidentService(AccidentMem accidentMem) {
-        this.accidentMem = accidentMem;
+    public AccidentService(IStore<Accident> accidents) {
+        this.accidents = accidents;
     }
 
-    public List<Accident> getAllAccident() {
-        return accidentMem.getAll();
+    public Accident create(Accident accident) {
+        return accidents.create(accident);
     }
+
+    public Accident edit(int id, Accident accident) {
+        return accidents.edit(id, accident);
+    }
+
+    public Accident findById(int id) {
+        return accidents.findById(id);
+    }
+
+    public List<Accident> findAll() {
+        return accidents.findAll();
+    }
+
+
 }
