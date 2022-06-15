@@ -42,6 +42,15 @@
                     </option>
                 </select>
             </div>
+            <div class="col-12">
+                <label for="rIds">Тип</label>
+                <select class="form-control" id="rIds" name="rIds" multiple="multiple" size="3">
+                    <option th:each="rule : ${rules}"
+                            th:value="${rule.id}"
+                            th:text="${rule.name}">
+                    </option>
+                </select>
+            </div>
         </div>
         <div class="my-4">
             <button class="w-100 btn btn-primary btn-lg" type="submit">Сохранить</button>

@@ -35,6 +35,7 @@
                 <th style="width: 22%;">Описание</th>
                 <th style="width: 22%;">Адрес</th>
                 <th style="width: 22%;">Тип</th>
+                <th style="width: 22%;">Статьи</th>
             </tr>
             </thead>
             <tbody>
@@ -49,6 +50,10 @@
                 <td th:text="${accident.text}"/>
                 <td th:text="${accident.address}"/>
                 <td th:text="${accident.type.name}"/>
+                <td th:each="rule: ${accident.rules}">
+                    <span th:text="${rule.name}"/>
+                </td>
+                </th>
             </tr>
             </tbody>
         </table>

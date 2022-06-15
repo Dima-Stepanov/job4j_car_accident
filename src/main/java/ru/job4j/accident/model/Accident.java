@@ -1,6 +1,8 @@
 package ru.job4j.accident.model;
 
 import java.util.Objects;
+import java.util.Set;
+import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
  * 3. Мидл
@@ -18,14 +20,16 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
+    private Set<Rule> rules = new CopyOnWriteArraySet<>();
 
-    public static Accident of(int id, String name, String text, String address, AccidentType type) {
+    public static Accident of(int id, String name, String text, String address, AccidentType type, Set<Rule> rules) {
         Accident accident = new Accident();
         accident.id = id;
         accident.name = name;
         accident.text = text;
         accident.address = address;
         accident.type = type;
+        accident.rules = rules;
         return accident;
     }
 
@@ -69,6 +73,18 @@ public class Accident {
         this.type = type;
     }
 
+    public Set<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(Set<Rule> rules) {
+        this.rules = rules;
+    }
+
+    public void addRule(Rule rule) {
+        this.rules.add(rule);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -89,6 +105,6 @@ public class Accident {
     @Override
     public String toString() {
         return "Accident{id=" + id + ", name='" + name + '\'' + ", text='" + text + '\''
-                + ", address='" + address + '\'' + ", type=" + type + '}';
+                + ", address='" + address + '\'' + ", type=" + type + ", rules=" + rules + '}';
     }
 }
