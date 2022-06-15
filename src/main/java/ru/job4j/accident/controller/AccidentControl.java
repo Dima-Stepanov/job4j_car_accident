@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.service.AccidentService;
+import ru.job4j.accident.service.AccidentTypeService;
 
 /**
  * 3. Мидл
@@ -18,32 +19,38 @@ import ru.job4j.accident.service.AccidentService;
  */
 @Controller
 public class AccidentControl {
-    private final AccidentService service;
+    private final AccidentTypeService typeService;
+    private final AccidentService accidentService;
 
-    public AccidentControl(AccidentService service) {
-        this.service = service;
+    public AccidentControl(AccidentService service, AccidentTypeService typeService) {
+        this.typeService = typeService;
+        this.accidentService = service;
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("types", typeService.findAll());
         return "accident/create";
     }
 
     @PostMapping("/save")
     public String save(@ModelAttribute Accident accident) {
-        service.create(accident);
+        accident.setType(typeService.findById(accident.getType().getId()).get());
+        accidentService.create(accident);
         return "redirect:/";
     }
 
     @GetMapping("/update")
     public String edit(Model model, @RequestParam("id") int id) {
-        model.addAttribute("accident", service.findById(id).get());
+        model.addAttribute("accident", accidentService.findById(id).get());
+        model.addAttribute("types", typeService.findAll());
         return "accident/edit";
     }
 
     @PostMapping("editPost")
     public String editPost(@ModelAttribute Accident accident) {
-        service.edit(accident.getId(), accident);
+        accident.setType(typeService.findById(accident.getType().getId()).get());
+        accidentService.edit(accident.getId(), accident);
         return "redirect:/";
     }
 

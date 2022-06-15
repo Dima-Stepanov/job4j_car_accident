@@ -19,7 +19,7 @@
     <hr class="my-4">
     <form th:action="@{/save}" method="post" th:object="${accident}">
         <div class="row g-3">
-            <div class="col-sm-6">
+            <div class="col-sm-12">
                 <label for="name" class="form-label">Название инцидента</label>
                 <input type="text" class="form-control" name="name" id="name" placeholder="Название инцидента">
             </div>
@@ -32,6 +32,15 @@
                 <label for="address">Адрес инцидента</label>
                 <input type="text" class="form-control" name="address" id="address"
                        placeholder="Адрес инцидента">
+            </div>
+            <div class="col-12">
+                <label for="type.id">Тип</label>
+                <select class="form-control" id="type.id" name="type.id">
+                    <option th:each="type : ${types}"
+                            th:value="${type.id}"
+                            th:text="${type.name}">
+                    </option>
+                </select>
             </div>
         </div>
         <div class="my-4">

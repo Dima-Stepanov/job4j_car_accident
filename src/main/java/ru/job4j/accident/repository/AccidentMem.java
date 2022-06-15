@@ -2,11 +2,10 @@ package ru.job4j.accident.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Accident;
+import ru.job4j.accident.model.AccidentType;
 
-import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -22,26 +21,26 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Repository
 public class AccidentMem implements IStore<Accident> {
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
-    private final AtomicInteger key = new AtomicInteger(0);
+    private final AtomicInteger key = new AtomicInteger();
 
     private AccidentMem() {
         for (int i = 0; i < 5; i++) {
             accidents.computeIfAbsent(key.incrementAndGet(),
                     k -> Accident.of(k, "Инцидент № " + k, "Описание инцидента № " + k,
-                            "Адрес инцидента № " + k));
+                            "Адрес инцидента № " + k, AccidentType.of(1, "Две машины")));
         }
     }
 
     @Override
     public Accident create(Accident accident) {
         return accidents.computeIfAbsent(key.incrementAndGet(),
-                k -> Accident.of(k, accident.getName(), accident.getText(), accident.getAddress()));
+                k -> Accident.of(k, accident.getName(), accident.getText(), accident.getAddress(), accident.getType()));
     }
 
     @Override
     public Accident edit(int id, Accident accident) {
         return accidents.computeIfPresent(id,
-                (key, value) -> Accident.of(key, accident.getName(), accident.getText(), accident.getAddress()));
+                (key, value) -> Accident.of(key, accident.getName(), accident.getText(), accident.getAddress(), accident.getType()));
     }
 
     @Override
@@ -53,5 +52,4 @@ public class AccidentMem implements IStore<Accident> {
     public List<Accident> findAll() {
         return accidents.values().stream().toList();
     }
-
 }
