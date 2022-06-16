@@ -32,19 +32,17 @@ public class AccidentMem implements IStore<Accident> {
                     k -> Accident.of(k, "Инцидент № " + k, "Описание инцидента № " + k,
                             "Адрес инцидента № " + k, AccidentType.of(1, "Две машины"), rules));
         }
-
     }
 
     @Override
     public Accident create(Accident accident) {
-        return accidents.computeIfAbsent(key.incrementAndGet(),
-                k -> Accident.of(k, accident.getName(), accident.getText(), accident.getAddress(), accident.getType(), accident.getRules()));
+        accident.setId(key.incrementAndGet());
+        return this.accidents.putIfAbsent(accident.getId(), accident);
     }
 
     @Override
     public Accident edit(int id, Accident accident) {
-        return accidents.computeIfPresent(id,
-                (key, value) -> Accident.of(key, accident.getName(), accident.getText(), accident.getAddress(), accident.getType(), accident.getRules()));
+        return accidents.replace(id, accident);
     }
 
     @Override
