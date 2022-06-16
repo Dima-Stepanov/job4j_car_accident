@@ -31,12 +31,13 @@ public class AccidentTypeMem implements IStore<AccidentType> {
 
     @Override
     public AccidentType create(AccidentType type) {
-        return null;
+        type.setId(key.incrementAndGet());
+        return this.types.putIfAbsent(type.getId(), type);
     }
 
     @Override
     public AccidentType edit(int id, AccidentType type) {
-        return null;
+        return this.types.replace(id, type);
     }
 
     @Override
