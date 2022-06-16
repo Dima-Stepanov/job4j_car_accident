@@ -20,20 +20,20 @@
         <input type="hidden" name="id" th:field="*{id}">
         <div class="row g-3">
             <div class="col-sm-6">
-                <label for="name" class="form-label">Название инцидента</label>
-                <input type="text" class="form-control" name="name" id="name" th:value="*{name}">
+                <label class="form-label">Название инцидента</label>
+                <input type="text" class="form-control" th:field="*{name}">
             </div>
             <div class="col-12">
-                <label for="text" class="form-label">Описание инцидента</label>
-                <input type="text" class="form-control" name="text" id="text" th:value="*{text}">
+                <label class="form-label">Описание инцидента</label>
+                <input type="text" class="form-control" th:field="*{text}">
             </div>
             <div class="col-12">
-                <label for="address">Адрес инцидента</label>
-                <input type="text" class="form-control" name="address" id="address" th:value="*{address}">
+                <label class="form-label">Адрес инцидента</label>
+                <input type="text" class="form-control" th:field="*{address}">
             </div>
             <div class="col-12">
-                <label for="type.id">Тип</label>
-                <select class="form-control" id="type.id" name="type.id">
+                <label>Тип</label>
+                <select class="form-control" th:field="*{type.id}">
                     <option th:each="type : ${types}"
                             th:value="${type.id}"
                             th:text="${type.name}">

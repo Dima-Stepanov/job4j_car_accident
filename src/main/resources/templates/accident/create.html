@@ -20,22 +20,22 @@
     <form th:action="@{/save}" method="post" th:object="${accident}">
         <div class="row g-3">
             <div class="col-sm-12">
-                <label for="name" class="form-label">Название инцидента</label>
-                <input type="text" class="form-control" name="name" id="name" placeholder="Название инцидента">
+                <label class="form-label">Название инцидента</label>
+                <input type="text" class="form-control" th:field="*{name}" placeholder="Название инцидента">
             </div>
             <div class="col-12">
-                <label for="text" class="form-label">Описание инцидента</label>
-                <input type="text" class="form-control" name="text" id="text"
+                <label class="form-label">Описание инцидента</label>
+                <input type="text" class="form-control" th:field="*{text}"
                        placeholder="Описание инцидента">
             </div>
             <div class="col-12">
-                <label for="address">Адрес инцидента</label>
-                <input type="text" class="form-control" name="address" id="address"
+                <label>Адрес инцидента</label>
+                <input type="text" class="form-control" th:field="*{address}"
                        placeholder="Адрес инцидента">
             </div>
             <div class="col-12">
-                <label for="type.id">Тип</label>
-                <select class="form-control" id="type.id" name="type.id">
+                <label>Тип</label>
+                <select class="form-control" th:field="*{type.id}">
                     <option th:each="type : ${types}"
                             th:value="${type.id}"
                             th:text="${type.name}">

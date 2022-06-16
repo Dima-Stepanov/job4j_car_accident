@@ -30,13 +30,14 @@ public class RuleMem implements IStore<Rule> {
     }
 
     @Override
-    public Rule create(Rule type) {
-        return null;
+    public Rule create(Rule rule) {
+        rule.setId(key.incrementAndGet());
+        return this.rules.putIfAbsent(rule.getId(), rule);
     }
 
     @Override
-    public Rule edit(int id, Rule type) {
-        return null;
+    public Rule edit(int id, Rule rule) {
+        return this.rules.replace(id, rule);
     }
 
     @Override
