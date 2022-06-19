@@ -20,7 +20,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Dmitry Stepanov, user Dmitry
  * @since 14.06.2022
  */
-@Repository
 public class AccidentMem implements IStore<Accident> {
     private final Map<Integer, Accident> accidents = new ConcurrentHashMap<>();
     private final AtomicInteger key = new AtomicInteger();

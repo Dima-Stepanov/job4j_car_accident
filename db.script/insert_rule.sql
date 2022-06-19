@@ -1,0 +1,1 @@
+insert into rule(r_name) values('Статья 1');
