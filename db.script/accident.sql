@@ -5,4 +5,4 @@ create table if not exists accident(
     ac_text varchar(2000),
     ac_address varchar(2000),
     at_id int references accident_type(at_id)
-)
+);

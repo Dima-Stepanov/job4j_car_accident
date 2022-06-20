@@ -18,7 +18,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Dmitry Stepanov, user Dmitry
  * @since 15.06.2022
  */
-@Repository
 public class RuleMem implements IStore<Rule> {
     private final AtomicInteger key = new AtomicInteger();
     private final Map<Integer, Rule> rules = new ConcurrentHashMap<>();

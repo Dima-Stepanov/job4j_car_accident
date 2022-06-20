@@ -2,4 +2,4 @@
 create table if not exists rule(
     r_id serial primary key,
     r_name varchar(200)
-)
+);

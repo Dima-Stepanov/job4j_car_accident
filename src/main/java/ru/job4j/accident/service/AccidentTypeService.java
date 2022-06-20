@@ -25,10 +25,21 @@ public class AccidentTypeService {
         this.storeType = storeType;
     }
 
+    /**
+     * Поиск AccidentType по ID.
+     *
+     * @param id int
+     * @return Optional.
+     */
     public Optional<AccidentType> findById(int id) {
         return Optional.ofNullable(storeType.findById(id));
     }
 
+    /**
+     * Вернуть все типы инцидентов.
+     *
+     * @return List
+     */
     public List<AccidentType> findAll() {
         return storeType.findAll();
     }

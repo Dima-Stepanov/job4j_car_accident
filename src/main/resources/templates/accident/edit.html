@@ -42,7 +42,7 @@
             </div>
             <div class="col-12">
                 <label for="rIds">Тип</label>
-                <select class="form-control" id="rIds" name="rIds" multiple="multiple" size="3">
+                <select class="form-control" id="rIds" name="rIds" multiple="multiple" size="4">
                     <option th:each="rule : ${rules}"
                             th:value="${rule.id}"
                             th:text="${rule.name}">

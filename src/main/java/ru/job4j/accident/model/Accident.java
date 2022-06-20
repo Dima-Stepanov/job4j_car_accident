@@ -1,5 +1,6 @@
 package ru.job4j.accident.model;
 
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -20,7 +21,7 @@ public class Accident {
     private String text;
     private String address;
     private AccidentType type;
-    private Set<Rule> rules = new CopyOnWriteArraySet<>();
+    private Set<Rule> rules = new HashSet<>();
 
     public static Accident of(int id, String name, String text, String address, AccidentType type, Set<Rule> rules) {
         Accident accident = new Accident();

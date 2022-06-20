@@ -18,7 +18,6 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author Dmitry Stepanov, user Dmitry
  * @since 15.06.2022
  */
-@Repository
 public class AccidentTypeMem implements IStore<AccidentType> {
     private final Map<Integer, AccidentType> types = new ConcurrentHashMap<>();
     private final AtomicInteger key = new AtomicInteger();
