@@ -25,12 +25,7 @@ import java.util.Properties;
  * @author Dmitry Stepanov, user Dmitry
  * @since 22.06.2022
  */
-
-@Configuration
-@PropertySource("classpath:app.properties")
-@EnableTransactionManagement
 public class HdmConfig {
-    @Bean
     public DataSource ds(@Value("${jdbc.driver}") String driver,
                          @Value("${jdbc.url}") String url,
                          @Value("${jdbc.username}") String username,
@@ -43,7 +38,6 @@ public class HdmConfig {
         return ds;
     }
 
-    @Bean
     public LocalSessionFactoryBean sessionFactory(@Value("${hibernate.dialect}") String dialect,
                                                   DataSource ds) {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
@@ -55,7 +49,6 @@ public class HdmConfig {
         return sessionFactory;
     }
 
-    @Bean
     public PlatformTransactionManager htx(SessionFactory sf) {
         HibernateTransactionManager tx = new HibernateTransactionManager();
         tx.setSessionFactory(sf);

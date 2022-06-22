@@ -93,7 +93,7 @@ public class AccidentControl {
         String[] rules = req.getParameterValues("rIds");
         accident.setRules(ruleService.getSelectRule(rules));
         accident.setType(typeService.findById(accident.getType().getId()).get());
-        accidentService.edit(accident.getId(), accident);
+        accidentService.create(accident);
         return "redirect:/";
     }
 }

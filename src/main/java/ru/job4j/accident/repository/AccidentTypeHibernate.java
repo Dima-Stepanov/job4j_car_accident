@@ -17,7 +17,6 @@ import java.util.List;
  * @author Dmitry Stepanov, user Dmitry
  * @since 22.06.2022
  */
-@Repository
 public class AccidentTypeHibernate implements IStore<AccidentType> {
     private final SessionFactory sf;
 

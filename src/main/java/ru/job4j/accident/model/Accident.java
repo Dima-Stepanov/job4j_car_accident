@@ -2,6 +2,7 @@ package ru.job4j.accident.model;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -20,7 +21,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 @Entity
 @Table(name = "accident")
-public class Accident {
+public class Accident implements Comparable<Accident> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ac_id")
@@ -126,5 +127,10 @@ public class Accident {
     public String toString() {
         return "Accident{id=" + id + ", name='" + name + '\'' + ", text='" + text + '\''
                 + ", address='" + address + '\'' + ", type=" + type + ", rules=" + rules + '}';
+    }
+
+    @Override
+    public int compareTo(Accident o) {
+        return Integer.compare(id, o.id);
     }
 }

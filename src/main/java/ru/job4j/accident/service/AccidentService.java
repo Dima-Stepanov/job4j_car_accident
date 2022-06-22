@@ -1,10 +1,14 @@
 package ru.job4j.accident.service;
 
+import org.hibernate.mapping.Collection;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
 import ru.job4j.accident.repository.ARJdbcTemplate;
+import ru.job4j.accident.repository.AccidentRepository;
 import ru.job4j.accident.repository.IStore;
 
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,15 +19,16 @@ import java.util.Optional;
  * AccidentService слой бизнес логики.
  * 3.4.3. Template, ORM
  * 1. Spring ORM [#2093]
+ * 2. Spring Data [#296073]
  *
  * @author Dmitry Stepanov, user Dmitry
  * @since 14.06.2022
  */
 @Service
 public class AccidentService {
-    private final IStore<Accident> accidents;
+    private final AccidentRepository accidents;
 
-    public AccidentService(IStore<Accident> accidents) {
+    public AccidentService(AccidentRepository accidents) {
         this.accidents = accidents;
     }
 
@@ -34,18 +39,7 @@ public class AccidentService {
      * @return Accident
      */
     public Accident create(Accident accident) {
-        return accidents.create(accident);
-    }
-
-    /**
-     * Редактировать Accident.
-     *
-     * @param id       int
-     * @param accident Accident.
-     * @return Accident.
-     */
-    public Accident edit(int id, Accident accident) {
-        return accidents.edit(id, accident);
+        return accidents.save(accident);
     }
 
     /**
@@ -54,8 +48,8 @@ public class AccidentService {
      * @param id int
      * @return Optional.
      */
-    public Optional<Accident> findById(int id) {
-        return Optional.ofNullable(accidents.findById(id));
+    public Optional<Accident> findById(Integer id) {
+        return accidents.findById(id);
     }
 
     /**
@@ -64,7 +58,7 @@ public class AccidentService {
      *
      * @return List.
      */
-    public List<Accident> findAll() {
+    public Iterable<Accident> findAll() {
         return accidents.findAll();
     }
 }
