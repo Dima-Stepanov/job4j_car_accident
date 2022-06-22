@@ -13,6 +13,8 @@ import java.util.Optional;
  * 3.4. Spring
  * 0. Spring MVC [#6877]
  * AccidentService слой бизнес логики.
+ * 3.4.3. Template, ORM
+ * 1. Spring ORM [#2093]
  *
  * @author Dmitry Stepanov, user Dmitry
  * @since 14.06.2022
@@ -20,11 +22,9 @@ import java.util.Optional;
 @Service
 public class AccidentService {
     private final IStore<Accident> accidents;
-    private final ARJdbcTemplate arJdbcTemplate;
 
-    public AccidentService(IStore<Accident> accidents, ARJdbcTemplate arJdbcTemplate) {
+    public AccidentService(IStore<Accident> accidents) {
         this.accidents = accidents;
-        this.arJdbcTemplate = arJdbcTemplate;
     }
 
     /**
@@ -65,10 +65,6 @@ public class AccidentService {
      * @return List.
      */
     public List<Accident> findAll() {
-        List<Accident> accidentList = accidents.findAll();
-        for (Accident accident : accidentList) {
-            accident.setRules(arJdbcTemplate.findByAccidentId(accident.getId()));
-        }
-        return accidentList;
+        return accidents.findAll();
     }
 }

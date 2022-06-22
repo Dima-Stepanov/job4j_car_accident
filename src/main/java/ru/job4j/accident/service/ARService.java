@@ -15,7 +15,6 @@ import java.util.Arrays;
  * @author Dmitry Stepanov, user Dmitry
  * @since 20.06.2022
  */
-@Service
 public class ARService {
     private final ARJdbcTemplate arJdbcTemplate;
 

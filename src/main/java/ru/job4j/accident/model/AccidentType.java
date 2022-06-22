@@ -1,5 +1,6 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -8,12 +9,19 @@ import java.util.Objects;
  * 3.4.2. MVC
  * 4. Form с композиционным объектом [#305522]
  * AccidentType модель описывает категорию инцидента.
+ * 1. Spring ORM [#2093]
  *
  * @author Dmitry Stepanov, user Dmitry
  * @since 15.06.2022
  */
+@Entity
+@Table(name = "accident_type")
 public class AccidentType {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "at_id")
     private int id;
+    @Column(name = "at_name", nullable = false, unique = true)
     private String name;
 
     public static AccidentType of(int id, String name) {

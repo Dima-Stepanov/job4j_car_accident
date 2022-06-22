@@ -17,7 +17,6 @@ import java.util.Set;
  * @author Dmitry Stepanov, user Dmitry
  * @since 20.06.2022
  */
-@Repository
 public class ARJdbcTemplate {
     private final JdbcTemplate jdbc;
 

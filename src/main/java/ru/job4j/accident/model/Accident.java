@@ -1,5 +1,6 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -11,16 +12,34 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * 3.4.2. MVC
  * 2. IndexControl. Таблица и вид. [#2092]
  * Accident модель данных инцидент.
+ * 3.4.3. Template, ORM
+ * 1. Spring ORM [#2093]
  *
  * @author Dmitry Stepanov, user Dmitry
  * @since 14.06.2022
  */
+@Entity
+@Table(name = "accident")
 public class Accident {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ac_id")
     private int id;
+    @Column(name = "ac_name")
     private String name;
+    @Column(name = "ac_text")
     private String text;
+    @Column(name = "ac_address")
     private String address;
+    @ManyToOne
+    @JoinColumn(name = "at_id", foreignKey = @ForeignKey(name = "AT_ID_FK"))
     private AccidentType type;
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "accident_rule", joinColumns = {
+            @JoinColumn(name = "ac_id", nullable = false)},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "r_id", nullable = false)
+            })
     private Set<Rule> rules = new HashSet<>();
 
     public static Accident of(int id, String name, String text, String address, AccidentType type, Set<Rule> rules) {

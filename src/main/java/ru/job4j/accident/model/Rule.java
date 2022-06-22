@@ -1,5 +1,6 @@
 package ru.job4j.accident.model;
 
+import javax.persistence.*;
 import java.util.Objects;
 
 /**
@@ -8,12 +9,19 @@ import java.util.Objects;
  * 3.4.2. MVC
  * 5. Form с аргегационными объектами [#305523]
  * Role модель списка статей.
+ * 1. Spring ORM [#2093]
  *
  * @author Dmitry Stepanov, user Dmitry
  * @since 15.06.2022
  */
+@Entity
+@Table(name = "rule")
 public class Rule {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "r_id")
     private int id;
+    @Column(name = "r_name", unique = true, nullable = false)
     private String name;
 
     public static Rule of(int id, String name) {

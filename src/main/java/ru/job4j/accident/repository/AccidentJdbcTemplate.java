@@ -27,7 +27,6 @@ import java.util.stream.Collectors;
  * @author Dmitry Stepanov, user Dima_Nout
  * @since 19.06.2022
  */
-@Repository
 public class AccidentJdbcTemplate implements IStore<Accident> {
     private final JdbcTemplate jdbc;
 

@@ -16,7 +16,6 @@ import java.util.List;
  * @author Dmitry Stepanov, user Dmitry
  * @since 20.06.2022
  */
-@Repository
 public class RuleJdbcTemplate implements IStore<Rule> {
     private final JdbcTemplate jdbc;
 

@@ -4,7 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.service.ARService;
 import ru.job4j.accident.service.AccidentService;
 import ru.job4j.accident.service.AccidentTypeService;
 import ru.job4j.accident.service.RuleService;
@@ -18,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
  * 3. @ModelAttribute. Создание инцидента. [#261013]
  * 4. Form с композиционным объектом [#305522 #312655]
  * 5. Form с агрегационными объектами [#305523]
+ * 3.4.3. Template, ORM
+ * 1. Spring ORM [#2093]
  * AccidentControl контроллер управления CRUD Accident
  *
  * @author Dmitry Stepanov, user Dmitry
@@ -28,13 +29,11 @@ public class AccidentControl {
     private final RuleService ruleService;
     private final AccidentTypeService typeService;
     private final AccidentService accidentService;
-    private final ARService arService;
 
-    public AccidentControl(AccidentService service, AccidentTypeService typeService, RuleService ruleService, ARService arService) {
+    public AccidentControl(AccidentService service, AccidentTypeService typeService, RuleService ruleService) {
         this.typeService = typeService;
         this.accidentService = service;
         this.ruleService = ruleService;
-        this.arService = arService;
     }
 
     /**
@@ -55,7 +54,7 @@ public class AccidentControl {
      * Метод Post сохраняет инцидент.
      *
      * @param accident Accident
-     * @param req HttpServletRequest
+     * @param req      HttpServletRequest
      * @return String
      */
     @PostMapping("/save")
@@ -64,7 +63,6 @@ public class AccidentControl {
         accident.setRules(ruleService.getSelectRule(rules));
         accident.setType(typeService.findById(accident.getType().getId()).get());
         accidentService.create(accident);
-        arService.saveAccidentRules(accident.getId(), rules);
         return "redirect:/";
     }
 
@@ -96,7 +94,6 @@ public class AccidentControl {
         accident.setRules(ruleService.getSelectRule(rules));
         accident.setType(typeService.findById(accident.getType().getId()).get());
         accidentService.edit(accident.getId(), accident);
-        arService.updateAccidentRules(accident.getId(), rules);
         return "redirect:/";
     }
 }
