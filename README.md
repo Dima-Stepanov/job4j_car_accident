@@ -1,3 +1,7 @@
+[![Java CI with Maven job4j_car_accident](https://github.com/Dima-Stepanov/job4j_car_accident/actions/workflows/maven.yml/badge.svg)](https://github.com/Dima-Stepanov/job4j_car_accident/actions/workflows/maven.yml)
+
+
+
 <h1>Проект - Автонарушители.</h1>
 
 В системе существуют две роли. Обычные пользователи и автоинспекторы. <br>
