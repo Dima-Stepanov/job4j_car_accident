@@ -1,5 +1,5 @@
 [![Java CI with Maven job4j_car_accident](https://github.com/Dima-Stepanov/job4j_car_accident/actions/workflows/maven.yml/badge.svg)](https://github.com/Dima-Stepanov/job4j_car_accident/actions/workflows/maven.yml)
-
+[![codecov](https://codecov.io/gh/Dima-Stepanov/job4j_car_accident/branch/master/graph/badge.svg?token=qAiI26KIsi)](https://codecov.io/gh/Dima-Stepanov/job4j_car_accident)
 
 
 <h1>Проект - Автонарушители.</h1>
