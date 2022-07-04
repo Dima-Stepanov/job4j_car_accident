@@ -25,9 +25,9 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginControl {
     @GetMapping("/login")
-    public String loginPage(@RequestParam(value = "error", required = false) String error,
-                            @RequestParam(value = "logout", required = false) String logout,
-                            Model model) {
+    public String loginPage(Model model,
+                            @RequestParam(value = "error", required = false) String error,
+                            @RequestParam(value = "logout", required = false) String logout) {
         String errorMessage = null;
         if (error != null) {
             errorMessage = "Имя пользователя или пароль неверны !!";
@@ -36,7 +36,7 @@ public class LoginControl {
             errorMessage = "Вы успешно вышли из системы !!";
         }
         model.addAttribute("errorMessage", errorMessage);
-        return "/login";
+        return "login";
     }
 
     @RequestMapping(value = "/logout", method = RequestMethod.GET)
