@@ -1,4 +1,4 @@
-package ru.job4j.accident.repository;
+package ru.job4j.accident.repository.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;

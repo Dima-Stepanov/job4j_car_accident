@@ -1,8 +1,9 @@
-package ru.job4j.accident.repository;
+package ru.job4j.accident.repository.jdbc;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import ru.job4j.accident.model.Rule;
+import ru.job4j.accident.repository.IStore;
 
 import java.util.List;
 

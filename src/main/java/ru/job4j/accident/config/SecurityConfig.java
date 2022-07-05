@@ -31,25 +31,35 @@ import javax.sql.DataSource;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final DataSource ds;
 
+
+
     public SecurityConfig(DataSource ds) {
         this.ds = ds;
     }
 
+    @Bean
+    public PasswordEncoder encoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        PasswordEncoder passwordEncoder =
-                PasswordEncoderFactories.createDelegatingPasswordEncoder();
         auth.jdbcAuthentication()
                 .dataSource(ds)
-                .withUser(User.withUsername("user")
-                        .password(passwordEncoder.encode("123456"))
-                        .roles("USER"));
+                .usersByUsernameQuery("select username, password, enabled "
+                        + "from users "
+                        + "where username = ?")
+                .authoritiesByUsernameQuery(
+                        " select u.username, a.authority "
+                                + "from authorities as a, users as u "
+                                + "where u.username = ? and u.authority_id = a.id"
+                );
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/login").permitAll()
+                .antMatchers("/login", "/reg").permitAll()
                 .antMatchers("/**").hasAnyRole("ADMIN", "USER")
                 .and()
                 .formLogin()

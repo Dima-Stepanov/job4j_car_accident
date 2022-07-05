@@ -1,9 +1,6 @@
 package ru.job4j.accident.service;
 
-import org.springframework.stereotype.Service;
-import ru.job4j.accident.repository.ARJdbcTemplate;
-
-import java.util.Arrays;
+import ru.job4j.accident.repository.jdbc.ARJdbcTemplate;
 
 /**
  * 3. Мидл

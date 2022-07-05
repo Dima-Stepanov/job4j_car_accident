@@ -1,15 +1,9 @@
 package ru.job4j.accident.service;
 
-import org.hibernate.mapping.Collection;
 import org.springframework.stereotype.Service;
 import ru.job4j.accident.model.Accident;
-import ru.job4j.accident.repository.ARJdbcTemplate;
 import ru.job4j.accident.repository.AccidentRepository;
-import ru.job4j.accident.repository.IStore;
 
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Optional;
 
 /**
